@@ -1,0 +1,14 @@
+# python related files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+
+# jupyter notebook for experiments
+notebook.ipynb
+
+# bcrpy generated files
+metadata.csv
+cache.*

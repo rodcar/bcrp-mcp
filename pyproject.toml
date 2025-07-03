@@ -1,0 +1,11 @@
+[project]
+name = "brcp-mcp"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "bcrpy>=3.2.1",
+    "fastmcp>=2.10.1",
+    "ipykernel>=6.29.5",
+]

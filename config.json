@@ -1,0 +1,12 @@
+{
+    "mcpServers": {
+      "brcp_mcp": {
+        "command": "uv",
+        "args": [
+          "--directory",
+          "/Users/ivan/Workspace/mcp-projects/brcp-mcp",
+          "run",
+          "main.py"]
+      }
+    }
+}
