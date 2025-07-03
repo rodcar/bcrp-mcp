@@ -2,6 +2,7 @@ from fastmcp import FastMCP
 from typing import List, Any
 import pandas as pd
 import bcrpy
+import os
 
 mcp = FastMCP("brcp-mcp")
 
@@ -112,4 +113,5 @@ def ask(question: str) -> str:
     """
 
 if __name__ == "__main__":
-    mcp.run(transport="stdio")
+    port = int(os.environ.get("PORT", 10000))
+    mcp.run(transport="streamable-http", host="0.0.0.0", port=port)
