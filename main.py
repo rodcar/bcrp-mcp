@@ -2,11 +2,13 @@ from fastmcp import FastMCP
 from typing import List, Any
 import pandas as pd
 import bcrpy
+from difflib import get_close_matches
 
 mcp = FastMCP("brcp-mcp")
 
 TIME_SERIES_GROUP = "Grupo de serie"
 METADATA_URL = "https://estadisticas.bcrp.gob.pe/estadisticas/series/metadata"
+CUTOFF = 0.65
 
 @mcp.tool()
 def search_time_series_groups(keywords: List[str]) -> List[str]:
@@ -25,11 +27,14 @@ def search_time_series_groups(keywords: List[str]) -> List[str]:
         List[str]: A list of unique time series group names that match the
                   search criteria. Returns an empty list if no matches are found.
     """
-    banco = bcrpy.Marco()
-    results = []
-    for keyword in keywords:
-        results.extend(banco.wordsearch(keyword)[TIME_SERIES_GROUP].tolist())
-    return list(set(results))
+    try:
+        df = pd.read_csv(METADATA_URL, delimiter=';', encoding='latin-1')
+        # index 3 is the column index for the time series group
+        # search based on wordsearch from bcrpy
+        matches = df[df.iloc[:, 3].apply(lambda x: any(get_close_matches(k, str(x).split(), n=1, cutoff=CUTOFF) for k in keywords))]
+        return list(set(matches[TIME_SERIES_GROUP]))
+    except Exception as e:
+        return [f"error: {e}"]
 
 @mcp.tool()
 def search_time_series_by_group(time_series_group: str) -> Any:
