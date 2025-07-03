@@ -103,7 +103,7 @@ def ask(question: str) -> str:
     return f"""You are a financial analyst. You are given a question and you need to answer it.
     Question: {question}
     Follow the following steps to answer the question:
-    1. Extract keywords from the question, these need to be related to financial time series.
+    1. Extract keywords (Keywords in Spanish) from the question, these need to be related to financial time series.
     2. Search for the time series group using the search_time_serie_group tool with the keywords.
     3. Search for the time series using the search_time_series_by_group tool with the time series group
     4. Return the time series code and name.
