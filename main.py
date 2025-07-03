@@ -1,13 +1,16 @@
 from fastmcp import FastMCP
 from typing import List, Any
 import pandas as pd
-import bcrpy
+import requests
 from difflib import get_close_matches
 
 mcp = FastMCP("brcp-mcp")
 
+BASE_URL = "https://estadisticas.bcrp.gob.pe/estadisticas/series"
+METADATA_ENDPOINT = f"{BASE_URL}/metadata"
+API_ENDPOINT = f"{BASE_URL}/api"
+
 TIME_SERIES_GROUP = "Grupo de serie"
-METADATA_URL = "https://estadisticas.bcrp.gob.pe/estadisticas/series/metadata"
 CUTOFF = 0.65
 
 @mcp.tool()
@@ -28,7 +31,7 @@ def search_time_series_groups(keywords: List[str]) -> List[str]:
                   search criteria. Returns an empty list if no matches are found.
     """
     try:
-        df = pd.read_csv(METADATA_URL, delimiter=';', encoding='latin-1')
+        df = pd.read_csv(METADATA_ENDPOINT, delimiter=';', encoding='latin-1')
         # index 3 is the column index for the time series group
         # search based on wordsearch from bcrpy
         matches = df[df.iloc[:, 3].apply(lambda x: any(get_close_matches(k, str(x).split(), n=1, cutoff=CUTOFF) for k in keywords))]
@@ -58,7 +61,7 @@ def search_time_series_by_group(time_series_group: str) -> Any:
                              containing an "error" key with the error message.
     """
     try:
-        metadata = pd.read_csv(METADATA_URL, delimiter=';', encoding='latin-1')
+        metadata = pd.read_csv(METADATA_ENDPOINT, delimiter=';', encoding='latin-1')
         result_list = metadata[metadata[TIME_SERIES_GROUP].str.contains(time_series_group, na=False)].iloc[:, [0, 3]].values.tolist()
         return [{"code": row[0], "name": row[1]} for row in result_list[:50]]
     except Exception as e:
@@ -86,11 +89,25 @@ def get_time_series_data(time_series_code: str, start: str, end: str) -> List[Li
                         The date is formatted as 'YYYY-MM-DD' and the value is the
                         corresponding data point for that date.
     """
-    banco = bcrpy.Marco()
-    banco.codes = [time_series_code]
-    banco.start = start
-    banco.end = end
-    return banco.GET(storage='df').reset_index().assign(index=lambda x: x['index'].dt.strftime('%Y-%m-%d')).astype(str).values.tolist()
+    try:
+        url = f"{API_ENDPOINT}/{time_series_code}/json/{start}/{end}/eng"
+        
+        response = requests.get(url)
+        if response.status_code != 200:
+            return []
+        
+        data = response.json()
+        result = []
+        
+        for period in data["periods"]:
+            date_formatted = pd.to_datetime(period["name"]).strftime('%Y-%m-%d')
+            value = period["values"][0] if period["values"] else "n.d."
+            result.append([date_formatted, str(value) if value != "n.d." else "n.d."])
+            
+        return result
+        
+    except Exception as e:
+        return []
 
 @mcp.prompt()
 def search_data(keyword: str) -> str:
