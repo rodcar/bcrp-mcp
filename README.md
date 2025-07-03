@@ -149,7 +149,6 @@ BCRP-MCP follows the Model Context Protocol specification and provides a clean a
 ```mermaid
 graph LR
     CLIENT[MCP Client<br/>Claude Desktop, IDE, etc.] --> MCP_SERVER[BCRP-MCP Server]
-    bcrpy --> BCRP_API[BCRP API<br/>estadisticas.bcrp.gob.pe]
     
     subgraph TOOLS ["🔧 Tools"]
         SEARCH_GROUP[search_time_serie_group]
@@ -168,12 +167,10 @@ graph LR
     MCP_SERVER --> SEARCH_PROMPT
     MCP_SERVER --> ASK_PROMPT
     
-    TOOLS --> bcrpy
-    TOOLS --> BCRP_API
+    TOOLS --> BCRP_API[BCRP API<br/>estadisticas.bcrp.gob.pe]
     
     style CLIENT fill:#e3f2fd
     style MCP_SERVER fill:#f3e5f5
-    style bcrpy fill:#e8f5e8
     style BCRP_API fill:#fff3e0
 ```
 
@@ -189,6 +186,8 @@ This project is licensed under the [Apache License 2.0](LICENSE).
 
 - **BCRP** for providing open access to Peru's economic data
 - **bcrpy** library for the Python interface to BCRP data ([https://github.com/andrewrgarcia/bcrpy](https://github.com/andrewrgarcia/bcrpy))
+
+> **Note:** bcrpy was used on early development, is not longer a dependency. Unfortunately the performance for the remote MCP server led to response timeouts.
 
 ---
 
