@@ -188,7 +188,7 @@ This project is licensed under the [Apache License 2.0](LICENSE).
 ## 🙏 Acknowledgments
 
 - **BCRP** for providing open access to Peru's economic data
-- **bcrpy** library for the Python interface to BCRP data
+- **bcrpy** library for the Python interface to BCRP data ([https://github.com/andrewrgarcia/bcrpy](https://github.com/andrewrgarcia/bcrpy))
 
 ---
 
