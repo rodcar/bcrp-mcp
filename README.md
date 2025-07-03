@@ -65,6 +65,8 @@ Add to Claude Desktop config (Claude > Settings > Developer > Edit Config):
 
 ### **Local Server**
 
+> **Note:** Make sure you have `uv` installed. If not, install it from [uv.tool](https://docs.astral.sh/uv/getting-started/installation/).
+
 Clone and install:
    ```bash
    git clone https://github.com/rodcar/brcp-mcp.git
