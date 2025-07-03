@@ -3,6 +3,7 @@ from typing import List, Any
 import pandas as pd
 import requests
 from difflib import get_close_matches
+import json
 
 mcp = FastMCP("brcp-mcp")
 
@@ -96,7 +97,13 @@ def get_time_series_data(time_series_code: str, start: str, end: str) -> List[Li
         if response.status_code != 200:
             return []
         
-        data = response.json()
+        # Extract JSON from response that may contain HTML errors
+        response_text = response.text
+        json_start = response_text.find('{\n"config":')
+        if json_start == -1:
+            return []
+        
+        data = json.loads(response_text[json_start:])
         result = []
         
         for period in data["periods"]:
