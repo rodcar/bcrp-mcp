@@ -1,6 +1,6 @@
 <div align="center">
 
-# BRCP-MCP
+# BCRP-MCP
 #### **Model Context Protocol (MCP) Server for BCRP Economic and Financial Time Series Data**
 
 ---
@@ -32,7 +32,7 @@
 
 ## 🎯 Overview
 
-BRCP-MCP is a **Model Context Protocol (MCP) server** that provides seamless access to economic and financial time series data from the **BCRP (Banco Central de Reserva del Perú)** - Peru's Central Reserve Bank. This server enables AI assistants and applications to search, explore, and analyze Peru's economic indicators, financial statistics, and monetary data through a standardized MCP interface.
+BCRP-MCP is a **Model Context Protocol (MCP) server** that provides seamless access to economic and financial time series data from the **BCRP (Banco Central de Reserva del Perú)** - Peru's Central Reserve Bank. This server enables AI assistants and applications to search, explore, and analyze Peru's economic indicators, financial statistics, and monetary data through a standardized MCP interface.
 
 ---
 
@@ -43,6 +43,8 @@ BRCP-MCP is a **Model Context Protocol (MCP) server** that provides seamless acc
 | `search_time_series_groups` | `keywords` | Search for time series groups using one or multiple keywords |
 | `search_time_series_by_group` | `time_series_group` | Find all time series within a specific group, returns code and name pairs |
 | `get_time_series_data` | `time_series_code`<br/>`start`<br/>`end` | Retrieve time series data for a specific code within a date range |
+
+> **Note:** When using the remote server, the MCP client may require increased connection timeout settings.
 
 ---
 
@@ -59,8 +61,21 @@ BRCP-MCP is a **Model Context Protocol (MCP) server** that provides seamless acc
 
 ### **Claude Desktop (Remote Server)**
 
+> **Note:** Requires `npx` which comes bundled with npm. If you don't have npm installed, install [Node.js](https://nodejs.org/) which includes npm.
+
 Add to Claude Desktop config (Claude > Settings > Developer > Edit Config):
    ```json
+   {
+     "mcpServers": {
+       "bcrp_mcp_remote": {
+         "command": "npx",
+         "args": [
+           "mcp-remote",
+           "https://bcrp-mcp.onrender.com/mcp"
+         ]
+       }
+     }
+   }
    ```
 
 ### **Local Server**
@@ -69,14 +84,14 @@ Add to Claude Desktop config (Claude > Settings > Developer > Edit Config):
 
 Clone and install:
    ```bash
-   git clone https://github.com/rodcar/brcp-mcp.git
-   cd brcp-mcp
+   git clone https://github.com/rodcar/bcrp-mcp.git
+   cd bcrp-mcp
    uv sync
    ```
 
 Add to Claude Desktop config (Claude > Settings > Developer > Edit Config):
 
-   > **Note:** Replace `/path/to/brcp-mcp` with the actual path where you cloned the repository.
+> **Note:** Replace `/path/to/bcrp-mcp` with the actual path where you cloned the repository.
 
    ```json
    {
@@ -85,7 +100,7 @@ Add to Claude Desktop config (Claude > Settings > Developer > Edit Config):
          "command": "uv",
          "args": [
            "--directory",
-           "/path/to/brcp-mcp",
+           "/path/to/bcrp-mcp",
            "run",
            "main.py"
          ]
@@ -93,6 +108,29 @@ Add to Claude Desktop config (Claude > Settings > Developer > Edit Config):
      }
    }
    ```
+
+MCP Inspector (Alternative)
+
+> **Note:** Requires `npx` which comes bundled with npm. If you don't have npm installed, install [Node.js](https://nodejs.org/) which includes npm.
+
+> **Note:** Replace `/path/to/bcrp-mcp` with the actual path where you cloned the repository.
+
+Run
+
+```bash
+npx @modelcontextprotocol/inspector \
+  uv \
+  --directory /path/to/bcrp-mcp \                     
+  run \
+  main.py
+```
+
+Open MCP Inspector (URL displayed in the console) and configure the MCP client with the following settings:
+   - **Transport Type:** Streamable HTTP
+   - **URL:** `http://bcrp-mcp.onrender.com/mcp`
+   - **Request Timeout:** Increase from default values
+   - **Maximum Total Timeout:** Increase from default values
+   - **Proxy Session Token:** Use the token generated in the console
 
 ---
 
@@ -106,11 +144,11 @@ Add to Claude Desktop config (Claude > Settings > Developer > Edit Config):
 
 ## 🏛️ Architecture Diagram
 
-BRCP-MCP follows the Model Context Protocol specification and provides a clean abstraction layer over the BCRP API.
+BCRP-MCP follows the Model Context Protocol specification and provides a clean abstraction layer over the BCRP API.
 
 ```mermaid
 graph LR
-    CLIENT[MCP Client<br/>Claude Desktop, IDE, etc.] --> MCP_SERVER[BRCP-MCP Server]
+    CLIENT[MCP Client<br/>Claude Desktop, IDE, etc.] --> MCP_SERVER[BCRP-MCP Server]
     bcrpy --> BCRP_API[BCRP API<br/>estadisticas.bcrp.gob.pe]
     
     subgraph TOOLS ["🔧 Tools"]
@@ -156,6 +194,6 @@ This project is licensed under the [Apache License 2.0](LICENSE).
 
 <div align="center">
 
-[Report Bug](https://github.com/rodcar/brcp-mcp/issues) · [Request Feature](https://github.com/rodcar/brcp-mcp/issues) · [Documentation](https://github.com/rodcar/brcp-mcp/wiki)
+[Report Bug](https://github.com/rodcar/bcrp-mcp/issues) · [Request Feature](https://github.com/rodcar/bcrp-mcp/issues) · [Documentation](https://github.com/rodcar/bcrp-mcp/wiki)
 
 </div>
