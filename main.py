@@ -1,8 +1,6 @@
 from fastmcp import FastMCP
-from typing import Dict, List, Any
-import requests
+from typing import List, Any
 import pandas as pd
-
 import bcrpy
 
 mcp = FastMCP("brcp-mcp")
