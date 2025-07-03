@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📊 BRCP-MCP
+# BRCP-MCP
 #### **Model Context Protocol (MCP) Server for BCRP Economic and Financial Time Series Data**
 
 ---
@@ -23,6 +23,7 @@
 - [🔧 Tools](#-tools)
 - [💬 Prompts](#-prompts)
 - [🚀 How to Use](#-how-to-use)
+- [💡 Examples](#-examples)
 - [🏛️ Architecture Diagram](#️-architecture-diagram)
 - [📝 License](#-license)
 - [🙏 Acknowledgments](#-acknowledgments)
@@ -90,6 +91,14 @@ Add to Claude Desktop config (Claude > Settings > Developer > Edit Config):
      }
    }
    ```
+
+---
+
+## 💡 Examples
+
+| Prompt | Language | Question | Conversation |
+|--------|----------|----------|-------------|
+| `ask` | Spanish | "¿Cómo ha evolucionado la tasa de interés de referencia en el último año?" | [https://claude.ai/share/34df5f90-7a35-474d-b4cf-e8f48c3f9772](https://claude.ai/share/34df5f90-7a35-474d-b4cf-e8f48c3f9772) |
 
 ---
 
