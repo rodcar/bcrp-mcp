@@ -145,6 +145,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 <div align="center">
 
-[Report Bug](https://github.com/yourusername/brcp-mcp/issues) · [Request Feature](https://github.com/yourusername/brcp-mcp/issues) · [Documentation](https://github.com/yourusername/brcp-mcp/wiki)
+[Report Bug](https://github.com/rodcar/brcp-mcp/issues) · [Request Feature](https://github.com/rodcar/brcp-mcp/issues) · [Documentation](https://github.com/rodcar/brcp-mcp/wiki)
 
 </div>
