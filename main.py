@@ -11,7 +11,7 @@ TIME_SERIES_GROUP = "Grupo de serie"
 METADATA_URL = "https://estadisticas.bcrp.gob.pe/estadisticas/series/metadata"
 
 @mcp.tool()
-def search_time_serie_group(keywords: List[str]) -> List[str]:
+def search_time_series_groups(keywords: List[str]) -> List[str]:
     """
     Search for time series groups using one or multiple keywords.
     
