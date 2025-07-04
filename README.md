@@ -20,6 +20,7 @@
 ## 📋 Table of Contents
 
 - [🎯 Overview](#-overview)
+- [🎬 Demo](#-demo)
 - [🔧 Tools](#-tools)
 - [💬 Prompts](#-prompts)
 - [🚀 How to Use](#-how-to-use)
