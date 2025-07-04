@@ -32,7 +32,13 @@
 
 ## 🎯 Overview
 
-BCRP-MCP is a **Model Context Protocol (MCP) server** that provides seamless access to economic and financial time series data from the **BCRP (Banco Central de Reserva del Perú)** - Central Reserve Bank of Peru. This server enables AI assistants and applications to search, explore, and analyze Peru's economic indicators, financial statistics, and monetary data through a standardized MCP interface.
+BCRP-MCP is a **Model Context Protocol (MCP) server** that provides seamless access to economic and financial time series data from the **BCRP (Banco Central de Reserva del Perú)** - Central Reserve Bank of Peru. This server enables AI agents and applications to search, explore, and analyze Peru's economic indicators, financial statistics, and monetary data through a standardized MCP interface.
+
+---
+
+## 🎬 Demo
+
+
 
 ---
 
@@ -187,7 +193,7 @@ This project is licensed under the [Apache License 2.0](LICENSE).
 - **BCRP** for providing open access to Peru's economic data
 - **bcrpy** library for the Python interface to BCRP data ([https://github.com/andrewrgarcia/bcrpy](https://github.com/andrewrgarcia/bcrpy))
 
-> **Note:** bcrpy was used on early development, is not longer a dependency. Unfortunately the performance for the remote MCP server led to response timeouts.
+> **Note:** bcrpy was used in early development, is no longer a dependency. Unfortunately the performance for the remote MCP server led to response timeouts.
 
 ---
 
