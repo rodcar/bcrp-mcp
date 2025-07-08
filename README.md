@@ -39,9 +39,11 @@ BCRP-MCP is a **Model Context Protocol (MCP) server** that provides seamless acc
 
 ## 🎬 Demo
 
-
+<div align="center">
 
 https://github.com/user-attachments/assets/c42eb8c3-4a1c-442d-bd12-cc1fd4ff18ae
+
+</div>
 
 Demo (Spanish): [https://youtube.com/shorts/gsjC07WR0n0](https://youtube.com/shorts/gsjC07WR0n0)
 
@@ -204,6 +206,6 @@ This project is licensed under the [Apache License 2.0](LICENSE).
 
 <div align="center">
 
-[Report Bug](https://github.com/rodcar/bcrp-mcp/issues) · [Request Feature](https://github.com/rodcar/bcrp-mcp/issues) · [Documentation](https://github.com/rodcar/bcrp-mcp/wiki)
+[Report Bug](https://github.com/rodcar/bcrp-mcp/issues) · [Request Feature](https://github.com/rodcar/bcrp-mcp/issues)
 
 </div>
